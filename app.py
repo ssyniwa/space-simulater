@@ -39,7 +39,7 @@ def init_game():
             "morale": 70,
             "status": "探索中",
             "log": "極寒のため装備の凍結が激しいです。燃料が必要です。",
-            "video_url": "https://www.w3schools.com/html/mov_bbb.mp4",
+            "video_url": "video/aisiria1.mp4",
         },
         "惑星ベルデ (巨大ジャングル)": {
             "hp": 100,
