@@ -32,7 +32,7 @@ def init_game():
             "morale": 80,
             "status": "探索中",
             "log": "砂嵐が接近中ですが、古代遺跡の反応があります。",
-            "video_url": "https://www.w3schools.com/html/mov_bbb.mp4",
+            "video_url": "video/zoruba1.mp4",
         },
         "惑星アイシリア (氷結の世界)": {
             "hp": 100,
