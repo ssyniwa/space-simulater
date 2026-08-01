@@ -25,51 +25,153 @@ def init_game():
         "特殊アイテム": 5,
     }
 
-    # 6つの惑星と部隊の初期データ
-    st.session_state.planets = {
+    # 6つの惑星と5日分の全データを定義
+    st.session_state.planet_stories = {
         "惑星ゾルバ (荒涼とした砂漠)": {
+            1: {
+                "log": "着陸成功。辺り一面に広がる赤茶色の砂漠です。通信の感度は良好ですが、微量の電磁波を検知しています。",
+                "media": "video/zoruba_day1.mp4",
+            },
+            2: {
+                "log": "突発的な砂嵐により一時的に視界がゼロに。機体のフィルターが目詰まりを起こしかけています。資源と食料の補給が急務です。",
+                "media": "video/zoruba_day2.mp4",
+            },
+            3: {
+                "log": "砂嵐が去った後、地表が削れて人工物の一部が露出しました。巨大な石造りの門のような遺跡を発見しました。",
+                "media": "video/zoruba_day3.mp4",
+            },
+            4: {
+                "log": "遺跡内部の調査中、自動防衛メカニズムが突発的に起動しました！戦闘部隊の支援がないと突破できません。",
+                "media": "video/zoruba_day4.mp4",
+            },
+            5: {
+                "log": "防衛システムの小康状態を突き、サンプル回収に成功しました。まもなく離脱ポイントへ移動します。帰還を待ちます！",
+                "media": "video/zoruba_day5.mp4",
+            },
+        },
+        "惑星アイシリア (氷結の世界)": {
+            1: {
+                "log": "着陸地点は一面の氷原です。気温マイナス60度。防寒スーツのヒーターがフル稼働していますが、エネルギー消費が激しいです。",
+                "media": "video/aisiria_day1.mp4",
+            },
+            2: {
+                "log": "観測機器のオイルが凍結し始めました。医薬品と保温資源がないと、隊員の凍傷リスクが高まります。",
+                "media": "video/aisiria_day2.mp4",
+            },
+            3: {
+                "log": "氷の洞窟を発見。内部に奇妙な熱源反応があります。凍結を溶かすための特殊アイテムが有効そうです。",
+                "media": "video/aisiria_day3.mp4",
+            },
+            4: {
+                "log": "氷の亀裂（クレバス）に隊員1名が一時落下しましたが自力で脱出。ただし機材の一部が破損しました。",
+                "media": "video/aisiria_day4.mp4",
+            },
+            5: {
+                "log": "氷の深層から極めて純度の高いエネルギー結晶を採取しました。エンジン出力を最大にして離脱します！",
+                "media": "video/aisiria_day5.mp4",
+            },
+        },
+        "惑星ベルデ (巨大ジャングル)": {
+            1: {
+                "log": "着陸地点は酸性雨と巨大植物に覆われたジャングルです。未知の植物から甘い芳香が漂っていますが、毒性に注意が必要です。",
+                "media": "video/berude_day1.png",
+            },
+            2: {
+                "log": "未知の巨大昆虫型生物にキャンプが襲撃されました。幸い撃退しましたが、弾薬と食料が消耗しています。",
+                "media": "video/berude_day2.png",
+            },
+            3: {
+                "log": "ジャングルの奥地に、かつて他文明が建てたと思われる放棄された前線基地の残骸を発見しました。",
+                "media": "video/berude_day3.png",
+            },
+            4: {
+                "log": "毒性の強い霧が発生し、隊員の士気が急低下しています。医薬品の投与と精神ケアが不可欠です。",
+                "media": "video/berude_day4.png",
+            },
+            5: {
+                "log": "新種の医療用有効成分を持つ植物のサンプルを採取完了しました。これより帰還モードに移行します。",
+                "media": "video/berude_day5.png",
+            },
+        },
+        "惑星ネビュラ (ガス状浮遊大陸)": {
+            1: {
+                "log": "地表が存在せず、数千メートルの空中に岩塊が浮遊しています。重力アンカーを固定して拠点を作りました。",
+                "media": "video/nebula_day1.mp4",
+            },
+            2: {
+                "log": "突風により、主要な浮遊岩のひとつの軌道がズレました。特殊アイテムを使った軌道安定化が必要です。",
+                "media": "video/nebula_day2.mp4",
+            },
+            3: {
+                "log": "浮遊大陸のエネルギーコアを発見。重力を操る技術の痕跡を確認しました。資源の配分を増やせば解析が進みます。",
+                "media": "video/nebula_day3.mp4",
+            },
+            4: {
+                "log": "強烈な磁気嵐が発生し、浮遊アンカーが外れかけました。戦闘部隊の力で強引に固定を死守しています。",
+                "media": "video/nebula_day4.mp4",
+            },
+            5: {
+                "log": "重力制御装置の核心データを持ち帰ることに成功しました。無重力エリアを脱出し、回収地点へ向かいます。",
+                "media": "video/nebula_day5.mp4",
+            },
+        },
+        "惑星オメガ (機械文明の廃墟)": {
+            1: {
+                "log": "かつて高度な機械文明が存在した痕跡を発見しました。しかし、都市のインフラは完全に死んでおらず、不気味に稼働しています。",
+                "media": "video/omega_day1.mp4",
+            },
+            2: {
+                "log": "都市の防衛ドローンに察知されました。警告音とともに敵性反応が増加中。戦闘部隊の増援がなければ危険です。",
+                "media": "video/omega_day2.mp4",
+            },
+            3: {
+                "log": "ネットワークの中枢にハッキングを試みています。特殊アイテムを投入すれば、敵の目を欺くことが可能です。",
+                "media": "video/omega_day3.mp4",
+            },
+            4: {
+                "log": "全自動防衛タレットの猛攻により、前線基地のバリアが限界です。資源を回して早急に修理を！",
+                "media": "video/omega_day4.mp4",
+            },
+            5: {
+                "log": "敵の中枢を一時停止させることに成功し、機密データを回収しました。完全封鎖される前に脱出します！",
+                "media": "video/omega_day5.mp4",
+            },
+        },
+        "惑星ヘイロー (高放射線帯)": {
+            1: {
+                "log": "着陸直後からガイガーカウンターが激しく鳴り響いています。高放射線帯のため、シールド服の着用が必須です。",
+                "media": "video/halo_day1.mp4",
+            },
+            2: {
+                "log": "放射線酔いによる隊員の体調不良者が続出しています。医薬品の配分を増やさないと数名が行動不能になります。",
+                "media": "video/halo_day2.mp4",
+            },
+            3: {
+                "log": "放射線をエネルギーに変換して発光する未知の鉱床を発見しました。特殊アイテムがあれば安全に採掘できます。",
+                "media": "video/halo_day3.mp4",
+            },
+            4: {
+                "log": "放射線量がピークに達し、通信機器に深刻なノイズが入っています。物資の補給が生命線です。",
+                "media": "video/halo_day4.mp4",
+            },
+            5: {
+                "log": "放射線シールドの耐久限界ギリギリで、全サンプルを回収しました。すぐにこの星から離脱します！",
+                "media": "video/halo_day5.mp4",
+            },
+        },
+    }
+
+    # 各惑星の初期状態（1日目のデータをセット）
+    st.session_state.planets = {}
+    for planet_name in st.session_state.planet_stories.keys():
+        st.session_state.planets[planet_name] = {
             "hp": 100,
             "morale": 80,
             "status": "探索中",
-            "log": "着陸成功。辺り一面に広がる赤茶色の砂漠です。通信の感度は良好ですが、微量の電磁波を検知しています。",
-            "video_url": "video/zoruba1.mp4",
-        },
-        "惑星アイシリア (氷結の世界)": {
-            "hp": 100,
-            "morale": 70,
-            "status": "探索中",
-            "log": "着陸地点は一面の氷原です。気温マイナス60度。防寒スーツのヒーターがフル稼働していますが、エネルギー消費が激しいです。",
-            "video_url": "video/aisiria1.mp4",
-        },
-        "惑星ベルデ (巨大ジャングル)": {
-            "hp": 100,
-            "morale": 90,
-            "status": "探索中",
-            "log": "着陸地点は酸性雨と巨大植物に覆われたジャングルです。未知の植物から甘い芳香が漂っていますが、毒性に注意が必要です。",
-            "video_url": "video/berude1.png",
-        },
-        "惑星ネビュラ (ガス状浮遊大陸)": {
-            "hp": 100,
-            "morale": 75,
-            "status": "探索中",
-            "log": "足場が不安定です。特殊アイテムが役立ちそうです。",
-            "video_url": "video/aisiria1.mp4",
-        },
-        "惑星オメガ (機械文明の廃墟)": {
-            "hp": 100,
-            "morale": 60,
-            "status": "探索中",
-            "log": "防衛ドローンが作動しました。戦闘部隊の支援が必要です。",
-            "video_url": "video/aisiria1.mp4",
-        },
-        "惑星ヘイロー (高放射線帯)": {
-            "hp": 100,
-            "morale": 65,
-            "status": "探索中",
-            "log": "放射線量が上昇中。医薬品の消費が激しいです。",
-            "video_url": "video/aisiria1.mp4",
-        },
-    }
+            "log": st.session_state.planet_stories[planet_name][1]["log"],
+            "video_url": st.session_state.planet_stories[planet_name][1]["media"],
+        }
+
     st.session_state.game_started = True
 
 
@@ -243,14 +345,8 @@ if st.button("🚀 物資を送信して翌日へ進む", type="primary", use_co
         for k in st.session_state.global_resources:
             st.session_state.global_resources[k] -= total_consumed[k]
 
-        # 各惑星の環境シミュレーションとイベント更新
-        logs_pool = [
-            "現地の環境が安定しています。順調にサンプルを回収中。",
-            "突発的な天候悪化により、物資の消費が増加しました。",
-            "未確認の遺跡からエネルギー反応を検知しました。",
-            "通信障害が発生しましたが、自力で復旧しました。",
-            "現地生物の接近がありましたが、無事にやり過ごしました。",
-        ]
+        # 日数を進める（次は何日目になるか）
+        next_day = st.session_state.day + 1
 
         for planet_name, data in st.session_state.planets.items():
             if data["status"] == "全滅":
@@ -259,7 +355,6 @@ if st.button("🚀 物資を送信して翌日へ進む", type="primary", use_co
             alloc = allocations[planet_name]
 
             # HPと士気の増減計算
-            # 食料がないとHP・士気低下
             hp_change = (
                 (alloc["食料"] * 3)
                 + (alloc["医薬品"] * 5)
@@ -271,17 +366,20 @@ if st.button("🚀 物資を送信して翌日へ進む", type="primary", use_co
                 0, min(100, data["morale"] + (alloc["食料"] * 2) - 5)
             )
 
-            # HPが0になったら全滅
+            # HPが0になったら全滅、そうでなければ構成案通りの次の日のログと動画をセット
             if data["hp"] <= 0:
                 data["status"] = "全滅"
                 data["log"] = (
                     "🚨 通信が途絶えました。部隊からの応答がありません……。"
                 )
-            else:
-                data["log"] = random.choice(logs_pool)
+            elif next_day <= 5:
+                # 構成案から該当する日数のレポートとメディアを読み込む
+                story = st.session_state.planet_stories[planet_name][next_day]
+                data["log"] = story["log"]
+                data["video_url"] = story["media"]
 
         # 日数を進める
-        st.session_state.day += 1
+        st.session_state.day = next_day
 
         # 毎日少しだけ司令部リソースを自然回復・補給
         st.session_state.global_resources["食料"] += 15
