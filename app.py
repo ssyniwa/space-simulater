@@ -158,10 +158,13 @@ for planet_name, data in st.session_state.planets.items():
         with col1:
             st.markdown(f"**💬 現地からのレポート:**")
             st.info(data["log"])
-            st.markdown(f"**🎥 現場からの映像記録:**")
-            # ダミーの動画を表示
-            st.video(data["video_url"])
-
+            st.markdown(f"**🎥 現場からの映像・画像記録:**")
+            media_path = data["video_url"]
+            # 拡張子を小文字で取得して画像かどうかを判定
+            if media_path.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.bmp', '.webp')):
+                st.image(media_path, use_column_width=True)
+            else:
+                st.video(media_path)
         with col2:
             st.markdown(f"**🛠️ 物資配分 (本日の補給)**")
             f_food = st.slider(
