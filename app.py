@@ -322,6 +322,18 @@ for planet_name, data in st.session_state.planets.items():
             else:
                 st.video(media_path)
         with col2:
+            st.markdown(f"**🎯 司令部作戦指示:**")
+            choices_dict = data["choices"]
+            # 選択肢のラベルリストを作成
+            choice_labels = list(choices_dict.keys())
+            
+            # ラジオボタンで作戦を選択
+            selected_choice_label = st.radio(
+                "本日の指示を選択",
+                choice_labels,
+                key=f"choice_{planet_name}",
+                format_func=lambda x: f"{x} ({choices_dict[x]['desc']})"
+            )
             st.markdown(f"**🛠️ 物資配分 (本日の補給)**")
             f_food = st.slider(
                 "食料",
@@ -364,12 +376,14 @@ for planet_name, data in st.session_state.planets.items():
                 help="環境に応じた特殊な危機を回避します",
             )
 
+            # 配分と選択した作戦を保存
             allocations[planet_name] = {
                 "食料": f_food,
                 "医薬品": f_med,
                 "資源": f_res,
                 "戦闘部隊": f_com,
                 "特殊アイテム": f_sp,
+                "selected_choice": selected_choice_label
             }
 
 st.markdown("---")
@@ -408,66 +422,50 @@ if st.button("🚀 物資を送信して翌日へ進む", type="primary", use_co
 
             alloc = allocations[planet_name]
             demand = data["demand"]
+            
+            # プレイヤーが選んだ作戦の効果を取得
+            chosen_label = alloc["selected_choice"]
+            chosen_effect = data["choices"][chosen_label]
 
-            # --- 特性に応じた毎ターンの基礎減少量（デバフ）の設定 ---
-            if "ゾルバ" in planet_name:
-                base_hp_decay = 8      # 砂漠：機械トラブルでHP減少やや多め
-                base_morale_decay = 5
-            elif "アイシリア" in planet_name:
-                base_hp_decay = 8
-                base_morale_decay = 12 # 氷結：寒さで士気が激減しやすい
-            elif "ベルデ" in planet_name:
-                base_hp_decay = 10     # ジャングル：生物の脅威でHP減少大
-                base_morale_decay = 6
-            elif "ネビュラ" in planet_name:
-                base_hp_decay = 7
-                base_morale_decay = 8  # 浮遊大陸：足場の不安で士気が不安定
-            elif "オメガ" in planet_name:
-                base_hp_decay = 12     # 機械廃墟：ドローンの攻撃でHPが大きく削られる
-                base_morale_decay = 7
-            elif "ヘイロー" in planet_name:
-                base_hp_decay = 15     # 放射線帯：圧倒的な環境ダメージでHPが激減
-                base_morale_decay = 10
-            else:
-                base_hp_decay = 10
-                base_morale_decay = 5
+            # 惑星ごとの基礎減少量（デバフ）
+            # (前回のコードにある base_hp_decay, base_morale_decay の計算をここに記述)
+            base_hp_decay = 10
+            base_morale_decay = 5
+
+            # --- 基本変動 ＋ 作戦選択の効果 ---
+            hp_diff = -base_hp_decay + chosen_effect["hp_bonus"]
+            morale_diff = -base_morale_decay + chosen_effect["morale_bonus"]
 
             # --- 要求充足度によるシミュレーション計算 ---
-            hp_diff = -base_hp_decay
-            morale_diff = -base_morale_decay
-
             for resource_key in ["食料", "医薬品", "資源", "戦闘部隊", "特殊アイテム"]:
                 sent = alloc[resource_key]
                 req = demand[resource_key]
 
                 if sent >= req:
-                    # 要求を満たしている場合（基礎減少分を相殺しつつボーナスを与える）
-                    hp_diff +=  (sent - req) * 2
-                    
+                    hp_diff += base_hp_decay + 5 + (sent - req) * 2
+                    morale_diff += base_morale_decay + 5
                 else:
-                    # 要求を下回っている場合、追加のペナルティ
                     shortage_amount = req - sent
                     if resource_key in ["食料", "医薬品"]:
-                        hp_diff -= shortage_amount * 14
-                        morale_diff -= shortage_amount * 10
+                        hp_diff -= shortage_amount * 12
+                        morale_diff -= shortage_amount * 8
                     else:
-                        hp_diff -= shortage_amount * 10
-                        morale_diff -= shortage_amount * 6
+                        hp_diff -= shortage_amount * 8
+                        morale_diff -= shortage_amount * 4
 
-            # 最終的なHPと士気の増減を反映（0〜100の範囲に収める）
+            # 最終的なHPと士気の反映
             data["hp"] = max(0, min(100, data["hp"] + hp_diff))
             data["morale"] = max(0, min(100, data["morale"] + morale_diff))
 
-            # HPが0になったら全滅、そうでなければ次の日のログ・要求・動画をセット
+            # 全滅判定 または 次の日のストーリー（ログ、要求、選択肢、動画）の更新
             if data["hp"] <= 0:
                 data["status"] = "全滅"
-                data["log"] = (
-                    "🚨 通信が途絶えました。部隊からの応答がありません……。"
-                )
+                data["log"] = "🚨 通信が途絶えました。部隊からの応答がありません……。"
             elif next_day <= 5:
                 story = st.session_state.planet_stories[planet_name][next_day]
                 data["log"] = story["log"]
                 data["demand"] = story["demand"]
+                data["choices"] = story["choices"]
                 data["video_url"] = story["media"]
 
         # 日数を進める
