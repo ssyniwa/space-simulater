@@ -581,16 +581,16 @@ if st.button("🚀 物資を送信して翌日へ進む", type="primary", use_co
                 req = demand[resource_key]
 
                 if sent >= req:
-                    hp_diff += base_hp_decay + 5 + (sent - req) * 2
-                    morale_diff += base_morale_decay + 5
+                    hp_diff +=  (sent - req) * 2
+                    
                 else:
                     shortage_amount = req - sent
                     if resource_key in ["食料", "医薬品"]:
-                        hp_diff -= shortage_amount * 12
-                        morale_diff -= shortage_amount * 8
+                        hp_diff -= shortage_amount * 14
+                        morale_diff -= shortage_amount * 10
                     else:
-                        hp_diff -= shortage_amount * 8
-                        morale_diff -= shortage_amount * 4
+                        hp_diff -= shortage_amount * 10
+                        morale_diff -= shortage_amount * 6
 
             # 最終的なHPと士気の反映
             data["hp"] = max(0, min(100, data["hp"] + hp_diff))
