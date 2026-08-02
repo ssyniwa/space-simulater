@@ -442,8 +442,8 @@ if st.button("🚀 物資を送信して翌日へ進む", type="primary", use_co
 
                 if sent >= req:
                     # 要求を満たしている場合（基礎減少分を相殺しつつボーナスを与える）
-                    hp_diff += base_hp_decay + 5 + (sent - req) * 2
-                    morale_diff += base_morale_decay + 5
+                    hp_diff +=  5 + (sent - req) * 2
+                    morale_diff +=  5
                 else:
                     # 要求を下回っている場合、追加のペナルティ
                     shortage_amount = req - sent
