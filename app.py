@@ -448,11 +448,11 @@ if st.button("🚀 物資を送信して翌日へ進む", type="primary", use_co
                     # 要求を下回っている場合、追加のペナルティ
                     shortage_amount = req - sent
                     if resource_key in ["食料", "医薬品"]:
-                        hp_diff -= shortage_amount * 13
-                        morale_diff -= shortage_amount * 9
+                        hp_diff -= shortage_amount * 14
+                        morale_diff -= shortage_amount * 10
                     else:
-                        hp_diff -= shortage_amount * 9
-                        morale_diff -= shortage_amount * 5
+                        hp_diff -= shortage_amount * 10
+                        morale_diff -= shortage_amount * 6
 
             # 最終的なHPと士気の増減を反映（0〜100の範囲に収める）
             data["hp"] = max(0, min(100, data["hp"] + hp_diff))
