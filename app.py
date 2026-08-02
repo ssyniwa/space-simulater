@@ -400,7 +400,6 @@ if st.button("🚀 物資を送信して翌日へ進む", type="primary", use_co
             st.session_state.global_resources[k] -= total_consumed[k]
 
         # 日数を進める（次は何日目になるか）
-        # 日数を進める（次は何日目になるか）
         next_day = st.session_state.day + 1
 
         for planet_name, data in st.session_state.planets.items():
@@ -410,30 +409,52 @@ if st.button("🚀 物資を送信して翌日へ進む", type="primary", use_co
             alloc = allocations[planet_name]
             demand = data["demand"]
 
+            # --- 特性に応じた毎ターンの基礎減少量（デバフ）の設定 ---
+            if "ゾルバ" in planet_name:
+                base_hp_decay = 8      # 砂漠：機械トラブルでHP減少やや多め
+                base_morale_decay = 5
+            elif "アイシリア" in planet_name:
+                base_hp_decay = 8
+                base_morale_decay = 12 # 氷結：寒さで士気が激減しやすい
+            elif "ベルデ" in planet_name:
+                base_hp_decay = 10     # ジャングル：生物の脅威でHP減少大
+                base_morale_decay = 6
+            elif "ネビュラ" in planet_name:
+                base_hp_decay = 7
+                base_morale_decay = 8  # 浮遊大陸：足場の不安で士気が不安定
+            elif "オメガ" in planet_name:
+                base_hp_decay = 12     # 機械廃墟：ドローンの攻撃でHPが大きく削られる
+                base_morale_decay = 7
+            elif "ヘイロー" in planet_name:
+                base_hp_decay = 15     # 放射線帯：圧倒的な環境ダメージでHPが激減
+                base_morale_decay = 10
+            else:
+                base_hp_decay = 10
+                base_morale_decay = 5
+
             # --- 要求充足度によるシミュレーション計算 ---
-            # 不足している分だけペナルティ、ぴったり以上ならボーナス
-            hp_diff = 0
-            morale_diff = 0
+            hp_diff = -base_hp_decay
+            morale_diff = -base_morale_decay
 
             for resource_key in ["食料", "医薬品", "資源", "戦闘部隊", "特殊アイテム"]:
                 sent = alloc[resource_key]
                 req = demand[resource_key]
 
                 if sent >= req:
-                    # 要求を満たしている場合（余分に送っても少しボーナス）
-                    hp_diff += 5 + (sent - req) * 2
-                    morale_diff += 5
+                    # 要求を満たしている場合（基礎減少分を相殺しつつボーナスを与える）
+                    hp_diff += base_hp_decay + 5 + (sent - req) * 2
+                    morale_diff += base_morale_decay + 5
                 else:
-                    # 要求を下回っている場合、大幅なペナルティ（特に食料と医薬品・戦闘部隊の不足は致命的）
+                    # 要求を下回っている場合、追加のペナルティ
                     shortage_amount = req - sent
                     if resource_key in ["食料", "医薬品"]:
-                        hp_diff -= shortage_amount * 15
-                        morale_diff -= shortage_amount * 10
+                        hp_diff -= shortage_amount * 12
+                        morale_diff -= shortage_amount * 8
                     else:
-                        hp_diff -= shortage_amount * 10
-                        morale_diff -= shortage_amount * 5
+                        hp_diff -= shortage_amount * 8
+                        morale_diff -= shortage_amount * 4
 
-            # 最終的なHPと士気の増減（基本変動も含める）
+            # 最終的なHPと士気の増減を反映（0〜100の範囲に収める）
             data["hp"] = max(0, min(100, data["hp"] + hp_diff))
             data["morale"] = max(0, min(100, data["morale"] + morale_diff))
 
@@ -448,6 +469,7 @@ if st.button("🚀 物資を送信して翌日へ進む", type="primary", use_co
                 data["log"] = story["log"]
                 data["demand"] = story["demand"]
                 data["video_url"] = story["media"]
+
         # 日数を進める
         st.session_state.day = next_day
 
