@@ -548,9 +548,28 @@ if st.button("🚀 物資を送信して翌日へ進む", type="primary", use_co
             chosen_effect = data["choices"][chosen_label]
 
             # 惑星ごとの基礎減少量（デバフ）
-            # (前回のコードにある base_hp_decay, base_morale_decay の計算をここに記述)
-            base_hp_decay = 10
-            base_morale_decay = 5
+            # --- 特性に応じた毎ターンの基礎減少量（デバフ）の設定 ---
+            if "ゾルバ" in planet_name:
+                base_hp_decay = 8      # 砂漠：機械トラブルでHP減少やや多め
+                base_morale_decay = 5
+            elif "アイシリア" in planet_name:
+                base_hp_decay = 8
+                base_morale_decay = 12 # 氷結：寒さで士気が激減しやすい
+            elif "ベルデ" in planet_name:
+                base_hp_decay = 10     # ジャングル：生物の脅威でHP減少大
+                base_morale_decay = 6
+            elif "ネビュラ" in planet_name:
+                base_hp_decay = 7
+                base_morale_decay = 8  # 浮遊大陸：足場の不安で士気が不安定
+            elif "オメガ" in planet_name:
+                base_hp_decay = 12     # 機械廃墟：ドローンの攻撃でHPが大きく削られる
+                base_morale_decay = 7
+            elif "ヘイロー" in planet_name:
+                base_hp_decay = 15     # 放射線帯：圧倒的な環境ダメージでHPが激減
+                base_morale_decay = 10
+            else:
+                base_hp_decay = 10
+                base_morale_decay = 5
 
             # --- 基本変動 ＋ 作戦選択の効果 ---
             hp_diff = -base_hp_decay + chosen_effect["hp_bonus"]
