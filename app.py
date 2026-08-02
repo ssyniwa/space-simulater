@@ -455,5 +455,7 @@ if st.button("🚀 物資を送信して翌日へ進む", type="primary", use_co
         st.session_state.global_resources["食料"] += 15
         st.session_state.global_resources["医薬品"] += 8
         st.session_state.global_resources["資源"] += 10
+        st.session_state.global_resources["戦闘部隊"] += 6
+        st.session_state.global_resources["特殊アイテム"] += 5
 
         st.rerun()
