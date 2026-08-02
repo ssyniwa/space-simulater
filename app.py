@@ -30,132 +30,162 @@ def init_game():
         "惑星ゾルバ (荒涼とした砂漠)": {
             1: {
                 "log": "着陸成功。辺り一面に広がる赤茶色の砂漠です。通信の感度は良好ですが、微量の電磁波を検知しています。",
+                "demand": {"食料": 3, "医薬品": 1, "資源": 1, "戦闘部隊": 0, "特殊アイテム": 0},
                 "media": "video/zoruba1.mp4",
             },
             2: {
                 "log": "突発的な砂嵐により一時的に視界がゼロに。機体のフィルターが目詰まりを起こしかけています。資源と食料の補給が急務です。",
+                "demand": {"食料": 4, "医薬品": 1, "資源": 3, "戦闘部隊": 0, "特殊アイテム": 0},
                 "media": "video/zoruba2.mp4",
             },
             3: {
                 "log": "砂嵐が去った後、地表が削れて人工物の一部が露出しました。巨大な石造りの門のような遺跡を発見しました。",
+                "demand": {"食料": 3, "医薬品": 1, "資源": 2, "戦闘部隊": 0, "特殊アイテム": 0},
                 "media": "video/zoruba3.mp4",
             },
             4: {
                 "log": "遺跡内部の調査中、自動防衛メカニズムが突発的に起動しました！戦闘部隊の支援がないと突破できません。",
+                "demand": {"食料": 3, "医薬品": 2, "資源": 1, "戦闘部隊": 2, "特殊アイテム": 0},
                 "media": "video/zoruba4.mp4",
             },
             5: {
                 "log": "防衛システムの小康状態を突き、サンプル回収に成功しました。まもなく離脱ポイントへ移動します。帰還を待ちます！",
+                "demand": {"食料": 2, "医薬品": 1, "資源": 1, "戦闘部隊": 1, "特殊アイテム": 0},
                 "media": "video/zoruba5.mp4",
             },
         },
         "惑星アイシリア (氷結の世界)": {
             1: {
                 "log": "着陸地点は一面の氷原です。気温マイナス60度。防寒スーツのヒーターがフル稼働していますが、エネルギー消費が激しいです。",
+                "demand": {"食料": 4, "医薬品": 1, "資源": 2, "戦闘部隊": 0, "特殊アイテム": 0},
                 "media": "video/aisiria1.mp4",
             },
             2: {
                 "log": "観測機器のオイルが凍結し始めました。医薬品と保温資源がないと、隊員の凍傷リスクが高まります。",
+                "demand": {"食料": 3, "医薬品": 3, "資源": 2, "戦闘部隊": 0, "特殊アイテム": 0},
                 "media": "video/aisiria2.png",
             },
             3: {
                 "log": "氷の洞窟を発見。内部に奇妙な熱源反応があります。凍結を溶かすための特殊アイテムが有効そうです。",
+                "demand": {"食料": 3, "医薬品": 1, "資源": 1, "戦闘部隊": 0, "特殊アイテム": 1},
                 "media": "video/aisiria3.png",
             },
             4: {
                 "log": "氷の亀裂（クレバス）に隊員1名が一時落下しましたが自力で脱出。ただし機材の一部が破損しました。",
+                "demand": {"食料": 3, "医薬品": 2, "資源": 2, "戦闘部隊": 0, "特殊アイテム": 0},
                 "media": "video/aisiria4.png",
             },
             5: {
                 "log": "氷の深層から極めて純度の高いエネルギー結晶を採取しました。エンジン出力を最大にして離脱します！",
+                "demand": {"食料": 2, "医薬品": 1, "資源": 2, "戦闘部隊": 0, "特殊アイテム": 0},
                 "media": "video/aisiria5.png",
             },
         },
         "惑星ベルデ (巨大ジャングル)": {
             1: {
                 "log": "着陸地点は酸性雨と巨大植物に覆われたジャングルです。未知の植物から甘い芳香が漂っていますが、毒性に注意が必要です。",
+                "demand": {"食料": 3, "医薬品": 2, "資源": 1, "戦闘部隊": 0, "特殊アイテム": 0},
                 "media": "video/berude1.png",
             },
             2: {
                 "log": "未知の巨大昆虫型生物にキャンプが襲撃されました。幸い撃退しましたが、弾薬と食料が消耗しています。",
+                "demand": {"食料": 4, "医薬品": 2, "資源": 1, "戦闘部隊": 2, "特殊アイテム": 0},
                 "media": "video/berude2.png",
             },
             3: {
-                "log": "ジャングルの奥地に、かつて他文明が建てたと思われる放棄された前線基地の残骸を発見しました。",
+               "log": "ジャングルの奥地に、かつて他文明が建てたと思われる放棄された前線基地の残骸を発見しました。",
+                "demand": {"食料": 3, "医薬品": 1, "資源": 3, "戦闘部隊": 0, "特殊アイテム": 0},
                 "media": "video/berude3.png",
             },
             4: {
                 "log": "毒性の強い霧が発生し、隊員の士気が急低下しています。医薬品の投与と精神ケアが不可欠です。",
+                "demand": {"食料": 3, "医薬品": 3, "資源": 1, "戦闘部隊": 0, "特殊アイテム": 1},
                 "media": "video/berude4.png",
             },
             5: {
                 "log": "新種の医療用有効成分を持つ植物のサンプルを採取完了しました。これより帰還モードに移行します。",
+                "demand": {"食料": 2, "医薬品": 2, "資源": 1, "戦闘部隊": 0, "特殊アイテム": 0},
                 "media": "video/berude5.png",
             },
         },
         "惑星ネビュラ (ガス状浮遊大陸)": {
             1: {
                 "log": "地表が存在せず、数千メートルの空中に岩塊が浮遊しています。重力アンカーを固定して拠点を作りました。",
+                "demand": {"食料": 3, "医薬品": 1, "資源": 2, "戦闘部隊": 0, "特殊アイテム": 1},
                 "media": "video/nebula1.png",
             },
             2: {
                 "log": "突風により、主要な浮遊岩のひとつの軌道がズレました。特殊アイテムを使った軌道安定化が必要です。",
+                "demand": {"食料": 3, "医薬品": 1, "資源": 2, "戦闘部隊": 0, "特殊アイテム": 2},
                 "media": "video/nebula2.png",
             },
             3: {
                 "log": "浮遊大陸のエネルギーコアを発見。重力を操る技術の痕跡を確認しました。資源の配分を増やせば解析が進みます。",
+                "demand": {"食料": 3, "医薬品": 1, "資源": 4, "戦闘部隊": 0, "特殊アイテム": 0},
                 "media": "video/nebula3.png",
             },
             4: {
                 "log": "強烈な磁気嵐が発生し、浮遊アンカーが外れかけました。戦闘部隊の力で強引に固定を死守しています。",
+                "demand": {"食料": 3, "医薬品": 1, "資源": 2, "戦闘部隊": 2, "特殊アイテム": 1},
                 "media": "video/nebula4.png",
             },
             5: {
                 "log": "重力制御装置の核心データを持ち帰ることに成功しました。無重力エリアを脱出し、回収地点へ向かいます。",
+                "demand": {"食料": 2, "医薬品": 1, "資源": 2, "戦闘部隊": 0, "特殊アイテム": 0},
                 "media": "video/nebula5.png",
             },
         },
         "惑星オメガ (機械文明の廃墟)": {
             1: {
                 "log": "かつて高度な機械文明が存在した痕跡を発見しました。しかし、都市のインフラは完全に死んでおらず、不気味に稼働しています。",
+                "demand": {"食料": 3, "医薬品": 1, "資源": 2, "戦闘部隊": 1, "特殊アイテム": 0},
                 "media": "video/omega1.png",
             },
             2: {
                 "log": "都市の防衛ドローンに察知されました。警告音とともに敵性反応が増加中。戦闘部隊の増援がなければ危険です。",
+                "demand": {"食料": 3, "医薬品": 1, "資源": 1, "戦闘部隊": 3, "特殊アイテム": 0},
                 "media": "video/omega2.png",
             },
             3: {
                 "log": "ネットワークの中枢にハッキングを試みています。特殊アイテムを投入すれば、敵の目を欺くことが可能です。",
+                "demand": {"食料": 3, "医薬品": 1, "資源": 2, "戦闘部隊": 1, "特殊アイテム": 2},
                 "media": "video/omega3.png",
             },
             4: {
                 "log": "全自動防衛タレットの猛攻により、前線基地のバリアが限界です。資源を回して早急に修理を！",
+                "demand": {"食料": 3, "医薬品": 2, "資源": 4, "戦闘部隊": 2, "特殊アイテム": 0},
                 "media": "video/omega4.png",
             },
             5: {
                 "log": "敵の中枢を一時停止させることに成功し、機密データを回収しました。完全封鎖される前に脱出します！",
+                "demand": {"食料": 2, "医薬品": 1, "資源": 2, "戦闘部隊": 1, "特殊アイテム": 0},
                 "media": "video/omega5.png",
             },
         },
         "惑星ヘイロー (高放射線帯)": {
             1: {
                 "log": "着陸直後からガイガーカウンターが激しく鳴り響いています。高放射線帯のため、シールド服の着用が必須です。",
+                "demand": {"食料": 3, "医薬品": 2, "資源": 1, "戦闘部隊": 0, "特殊アイテム": 0},
                 "media": "video/halo1.png",
             },
             2: {
                 "log": "放射線酔いによる隊員の体調不良者が続出しています。医薬品の配分を増やさないと数名が行動不能になります。",
+                "demand": {"食料": 3, "医薬品": 4, "資源": 1, "戦闘部隊": 0, "特殊アイテム": 0},
                 "media": "video/halo2.png",
             },
             3: {
                 "log": "放射線をエネルギーに変換して発光する未知の鉱床を発見しました。特殊アイテムがあれば安全に採掘できます。",
+                "demand": {"食料": 3, "医薬品": 2, "資源": 2, "戦闘部隊": 0, "特殊アイテム": 2},
                 "media": "video/halo3.png",
             },
             4: {
                 "log": "放射線量がピークに達し、通信機器に深刻なノイズが入っています。物資の補給が生命線です。",
+                "demand": {"食料": 4, "医薬品": 3, "資源": 2, "戦闘部隊": 0, "特殊アイテム": 0},
                 "media": "video/halo4.png",
             },
             5: {
                 "log": "放射線シールドの耐久限界ギリギリで、全サンプルを回収しました。すぐにこの星から離脱します！",
+                "demand": {"食料": 2, "医薬品": 2, "資源": 2, "戦闘部隊": 0, "特殊アイテム": 0},
                 "media": "video/halo5.png",
             },
         },
@@ -164,12 +194,14 @@ def init_game():
     # 各惑星の初期状態（1日目のデータをセット）
     st.session_state.planets = {}
     for planet_name in st.session_state.planet_stories.keys():
+        story = st.session_state.planet_stories[planet_name][1]
         st.session_state.planets[planet_name] = {
             "hp": 100,
             "morale": 80,
             "status": "探索中",
-            "log": st.session_state.planet_stories[planet_name][1]["log"],
-            "video_url": st.session_state.planet_stories[planet_name][1]["media"],
+            "log": story["log"],
+            "demand": story["demand"],
+            "video_url": story["media"],
         }
 
     st.session_state.game_started = True
@@ -260,10 +292,21 @@ for planet_name, data in st.session_state.planets.items():
         with col1:
             st.markdown(f"**💬 現地からのレポート:**")
             st.info(data["log"])
+
+            # --- 追加: 要求物資の表示 ---
+            st.markdown(f"**📋 本日の要求物資:**")
+            demands = data["demand"]
+            # 横並びで要求数を綺麗に表示
+            d_cols = st.columns(len(demands))
+            for i, (k, v) in enumerate(demands.items()):
+                with d_cols[i]:
+                    st.metric(k, f"{v}個")
+
             st.markdown(f"**🎥 現場からの映像・画像記録:**")
             media_path = data["video_url"]
-            # 拡張子を小文字で取得して画像かどうかを判定
-            if media_path.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.bmp', '.webp')):
+            if media_path.lower().endswith(
+                (".png", ".jpg", ".jpeg", ".gif", ".bmp", ".webp")
+            ):
                 st.image(media_path, use_column_width=True)
             else:
                 st.video(media_path)
@@ -346,6 +389,7 @@ if st.button("🚀 物資を送信して翌日へ進む", type="primary", use_co
             st.session_state.global_resources[k] -= total_consumed[k]
 
         # 日数を進める（次は何日目になるか）
+        # 日数を進める（次は何日目になるか）
         next_day = st.session_state.day + 1
 
         for planet_name, data in st.session_state.planets.items():
@@ -353,31 +397,46 @@ if st.button("🚀 物資を送信して翌日へ進む", type="primary", use_co
                 continue
 
             alloc = allocations[planet_name]
+            demand = data["demand"]
 
-            # HPと士気の増減計算
-            hp_change = (
-                (alloc["食料"] * 3)
-                + (alloc["医薬品"] * 5)
-                + (alloc["資源"] * 2)
-                - 10
-            )
-            data["hp"] = max(0, min(100, data["hp"] + hp_change))
-            data["morale"] = max(
-                0, min(100, data["morale"] + (alloc["食料"] * 2) - 5)
-            )
+            # --- 要求充足度によるシミュレーション計算 ---
+            # 不足している分だけペナルティ、ぴったり以上ならボーナス
+            hp_diff = 0
+            morale_diff = 0
 
-            # HPが0になったら全滅、そうでなければ構成案通りの次の日のログと動画をセット
+            for resource_key in ["食料", "医薬品", "資源", "戦闘部隊", "特殊アイテム"]:
+                sent = alloc[resource_key]
+                req = demand[resource_key]
+
+                if sent >= req:
+                    # 要求を満たしている場合（余分に送っても少しボーナス）
+                    hp_diff += 5 + (sent - req) * 2
+                    morale_diff += 5
+                else:
+                    # 要求を下回っている場合、大幅なペナルティ（特に食料と医薬品・戦闘部隊の不足は致命的）
+                    shortage_amount = req - sent
+                    if resource_key in ["食料", "医薬品"]:
+                        hp_diff -= shortage_amount * 15
+                        morale_diff -= shortage_amount * 10
+                    else:
+                        hp_diff -= shortage_amount * 10
+                        morale_diff -= shortage_amount * 5
+
+            # 最終的なHPと士気の増減（基本変動も含める）
+            data["hp"] = max(0, min(100, data["hp"] + hp_diff))
+            data["morale"] = max(0, min(100, data["morale"] + morale_diff))
+
+            # HPが0になったら全滅、そうでなければ次の日のログ・要求・動画をセット
             if data["hp"] <= 0:
                 data["status"] = "全滅"
                 data["log"] = (
                     "🚨 通信が途絶えました。部隊からの応答がありません……。"
                 )
             elif next_day <= 5:
-                # 構成案から該当する日数のレポートとメディアを読み込む
                 story = st.session_state.planet_stories[planet_name][next_day]
                 data["log"] = story["log"]
+                data["demand"] = story["demand"]
                 data["video_url"] = story["media"]
-
         # 日数を進める
         st.session_state.day = next_day
 
