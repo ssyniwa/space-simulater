@@ -586,11 +586,11 @@ if st.button("🚀 物資を送信して翌日へ進む", type="primary", use_co
                 else:
                     shortage_amount = req - sent
                     if resource_key in ["食料", "医薬品"]:
-                        hp_diff -= shortage_amount * 14
-                        morale_diff -= shortage_amount * 10
+                        hp_diff -= shortage_amount * 16
+                        morale_diff -= shortage_amount * 12
                     else:
-                        hp_diff -= shortage_amount * 10
-                        morale_diff -= shortage_amount * 6
+                        hp_diff -= shortage_amount * 12
+                        morale_diff -= shortage_amount * 8
 
             # 最終的なHPと士気の反映
             data["hp"] = max(0, min(100, data["hp"] + hp_diff))
